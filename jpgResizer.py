@@ -6,7 +6,7 @@ def getFilenames(currentdir):
     filenames_bak = os.listdir(currentdir)
     filenames = []
     for name in filenames_bak:
-        if re.search('jpg' or 'JPG', name):
+        if re.search('.jpg' or '.JPG', name):
             filenames.append(name)
     return filenames
 #Get file names in the folder, select all jpg files
@@ -39,12 +39,12 @@ def main():
         if prop != 1:
             w = int(w/prop)
             h = int(h/prop)
-            newimg = img.resize((w, h), Image.NEAREST)
+            newimg = img.resize((w, h), Image.ANTIALIAS)
             newimg.save(targetDir + os.sep + name)
             print('Resized to ', w, h)
         else:
             print('Needs not resize')
-            img.save(targetDir + os.sep + name)
+            img.save(targetDir + os.sep + name, quality = 100)
     input('Press "Enter"')
 
 
